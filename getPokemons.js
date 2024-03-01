@@ -1,44 +1,34 @@
 const axios = require("axios");
-const { Pokemons, Type } = require("../db");
-const getDataApi = require("../utils/getDataApi");
-const getDataDb = require("../utils/getDataDb");
+const getData = require("../utils/getData");
+const getDB = require("../utils/getDB");
+const { Pokemon, Type } = require("../db.js");
 
-const URL = "https://pokeapi.co/api/v2/pokemon/";
-const limit = 150;
-let endpoint = URL;
+const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
 
 const getPokemons = async () => {
-  let apiPokemonsUrl = [];
-  try {
-    //* From API
-    while (apiPokemonsUrl.length < limit) {
-      const { data } = await axios.get(endpoint);
-      apiPokemonsUrl.push(...data.results); // restuls: [{name : 'name'}, {url: 'data'}]
+  let allPokemonsApi = [];
+  let endpoint = baseUrl;
 
-      endpoint = data.next;
-    }
-    endpoint = URL;
-
-    const pokemonDataPromises = apiPokemonsUrl.map((poke) =>
-      axios // Map every element in apiPokemonUrl. This is an [] of promises. Each promise is the data of one Pokemon from the API.
-        .get(poke.url)
-        .then((res) => getDataApi(res.data))
-        .catch((error) => error.message)
-    );
-
-    const apiListPokemons = await Promise.all(pokemonDataPromises);
-
-    //* From DDBB
-    const dbPokemons = await Pokemons.findAll({ include: Type });
-    const dbFilteredPokemons = getDataDb(dbPokemons);
-
-    //* API + DDBB
-    const allPokemons = [...dbFilteredPokemons, ...apiListPokemons];
-    return allPokemons;
-  } catch (error) {
-    console.error("Error: ", error.message);
-    throw error;
+  while (allPokemonsApi.length < 60) {
+    const response = await axios.get(endpoint);
+    allPokemonsApi.push(...response.data.results);
+    endpoint = response.data.next;
   }
+
+  const pokemonPromises = allPokemonsApi
+    .slice(0, 60)
+    .map((poke) => axios.get(poke.url));
+  const pokemonResponses = await Promise.all(pokemonPromises);
+  const apiPokemons = await Promise.all(
+    pokemonResponses.map((response) => getData(response.data))
+  );
+
+  const dbPokemons = await Pokemon.findAll({ include: Type });
+  const dbPokemonsFiltered = getDB(dbPokemons);
+
+  const allPokemons = [...dbPokemonsFiltered, ...apiPokemons];
+
+  return allPokemons;
 };
 
 module.exports = getPokemons;

@@ -1,27 +1,25 @@
 const axios = require("axios");
-const getDataApi = require("../utils/getDataApi");
-const { Pokemons, Type } = require("../db.js");
+const getData = require("../utils/getData");
+const { Pokemon, Type } = require("../db.js");
 
 const getPokemonById = async (id) => {
-  const URL = "https://pokeapi.co/api/v2/pokemon/";
+  const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
+
   let localPokemon;
 
-  //* From API
-  if (!isNaN(id)) {
-    const { data } = await axios(`${URL}/${id}`);
-    const standardizedPokemonApi = await getDataApi(data);
-    return standardizedPokemonApi;
-  }
+  if (isNaN(id)) {
+    localPokemon = await Pokemon.findOne({ where: { id: id }, include: Type });
+  } 
 
-  //* From DDBB
-  else {
-    localPokemon = await Pokemons.findOne({ where: { id: id }, include: Type });
-
-    if (localPokemon) {
-      const localPokemonJSON = localPokemon.toJSON();
-      localPokemonJSON.types = localPokemon.types.map((type) => type.name);
-      return localPokemonJSON;
-    }
+  if (localPokemon) {
+    const localPokemonJSON = localPokemon.toJSON(); 
+    localPokemonJSON.types = localPokemon.types.map((type) => type.name); 
+    return localPokemonJSON; 
+  } else if (!isNaN(id)) {
+    const getPokemonByIdResponse = await axios(`${baseUrl}/${id}`);
+    const data = getPokemonByIdResponse.data;
+    const filteredData = await getData(data);
+    return filteredData;
   }
 
   throw Error("Pokemon not found");

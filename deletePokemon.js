@@ -1,16 +1,22 @@
-const { Pokemons } = require("../db");
+const { Pokemon } = require("../db");
 
 const deletePokemonController = async (id) => {
   try {
     if (!id) {
-      return res.status(400).json({ error: "ID is required" });
+      throw new Error("ID is required");
     }
 
-    const deletedPokemon = await Pokemons.destroy({
+    const deletedPokemon = await Pokemon.destroy({
       where: {
         id: id,
       },
     });
+
+    if (!deletedPokemon) {
+      throw new Error("Pokemon not found");
+    }
+
+    return deletedPokemon;
   } catch (error) {
     console.error("Error: ", error.message);
     throw error;

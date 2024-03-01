@@ -1,9 +1,9 @@
 // pokemonController.js
-const { Pokemons, Type } = require("../db");
+const { Pokemon, Type } = require("../db");
 
 const putPokemon = async (id, updatedData) => {
   try {
-    const pokemonToUpdate = await Pokemons.findByPk(id);
+    const pokemonToUpdate = await Pokemon.findByPk(id);
 
     if (!pokemonToUpdate) {
       throw new Error("Pokemon not found");
