@@ -1,0 +1,77 @@
+.container {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column; 
+    justify-content:flex-start;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'VT323', monospace;
+    padding: 5px;
+    
+  }
+  
+   .image {
+    width: 750px;
+    height: 350px;
+    margin: 2px;
+    position: relative;
+    object-fit: scale-down; 
+    object-position: center; 
+    margin-left: 773px;
+    margin-bottom: 00px;
+  }
+   
+  
+  
+  .btn {
+     width: 90px;
+     height: 50px;
+     border: 3px solid #1a47fa;
+     font-size: 20px;
+     cursor: pointer;
+     -webkit-tap-highlight-color: transparent;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     z-index: 0;
+     transition: 1s;
+     color: #0c0c0b;
+     font-family: sans-serif;
+     font-family: 'VT323', monospace;
+     margin-left: 777px;
+     background-color: #d0e420;
+   }
+  
+   .btn::before,
+   .btn::after {
+     position: absolute;
+     background: #efd335;
+
+   }
+   .noselect {
+     -webkit-touch-callout: none;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+   }
+  
+   .btn:hover::before {
+    width: 0px;
+    background: #d0e420;
+  }
+  
+  .btn:hover::after {
+    height: 0px;
+    background: #eef121;
+  }
+  
+  .btn:hover {
+    background: #e6e62e;
+  }
+  

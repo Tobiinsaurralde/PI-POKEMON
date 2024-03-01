@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "tiatobtom10",
+    "database": "pokemon",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "tiatobtom10",
+    "database": "pokemon",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "tiatobtom10",
+    "database": "pokemon",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
