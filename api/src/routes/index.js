@@ -5,17 +5,15 @@ const getPokemonByIdHandler = require("../handlers/getPokemonByIdHandler");
 const getPokemonByNameHandler = require("../handlers/getPokemonByNameHandler");
 const createPokemonHandler = require("../handlers/createPokemonHandler");
 const getTypeHandler = require("../handlers/getTypeHandler");
-const deletePokemonHandler = require("../handlers/deletePokemonHandler"); 
-const putPokemonHandler = require("../handlers/putPokemonHandler");
-
+const createTypeHandler = require ("../handlers/createTypeHandler");
 
 const router = Router();
-
-router.put("/put/:id", putPokemonHandler);
 
 router.get("/pokemons/name", getPokemonByNameHandler);
 
 router.get("/pokemons", getPokemonsHandler);
+
+router.post("/type", createTypeHandler);
 
 router.post("/pokemons", createPokemonHandler);
 

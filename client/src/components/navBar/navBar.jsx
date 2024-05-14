@@ -94,7 +94,7 @@ const NavBar = () => {
       <select onChange={handleOriginFilter}>
         <option value="">Origin</option>
         <option value="API">API</option>
-        <option value="DB">Database</option>
+        <option value="DB">Created</option>
       </select>
 
       {/* -----------ORDER------------ */}
@@ -104,6 +104,7 @@ const NavBar = () => {
           <option value="">Sort By</option>
           <option value="name">Name</option>
           <option value="attack">Attack</option>
+
         </select>
 
         <select onChange={handleSortingDirection}>

@@ -45,6 +45,7 @@ const DetailPage = () => {
           <div>Weight: {currentPokemon.weight}</div>
           <div>Type: {currentPokemon.types.join(" / ")}</div>
         </div>
+
       </div>
     )
   );

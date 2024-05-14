@@ -38,6 +38,7 @@ const HomePage = () => {
       sortedPokemons.sort((a, b) => a.attack - b.attack);
     }
 
+
     if (sortingDirection === "desc") {
       sortedPokemons.reverse();
     }
@@ -52,8 +53,6 @@ const HomePage = () => {
     lastPokemonIndex
   );
   
-  // console.log("Pokemon to show:", currentPokemons);
-
   const handlePageChange = (pageNumber) => {
    
     dispatch(setPage(pageNumber));

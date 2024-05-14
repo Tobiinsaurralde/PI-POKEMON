@@ -23,7 +23,7 @@ const LandingPage = () => {
     <div className={styles.container}>
       <img className={styles.image} src="/src/assets/images/logo.png" alt="" />
       <button className={styles.btn} onClick={handleHome}>
-        <span className={styles.noselect}>Home</span>
+        <span className={styles.noselect}>Let's go!</span>
       </button>
     </div>
   );

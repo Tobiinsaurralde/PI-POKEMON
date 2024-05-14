@@ -41,7 +41,7 @@ export const fetchPokemons = () => {
     dispatch(fetchRequest());
 
     try {
-      const response = await axios.get(`http://localhost:3002/pokemons`);
+      const response = await axios.get(`/pokemons`);
       dispatch(fetchSuccess(response.data));
     } catch (error) {
       dispatch(fetchFail(error.message));
@@ -57,7 +57,7 @@ export const searchPokemon = (name) => {
 
     try {
       const response = await axios.get(
-        `http://localhost:3002/pokemons/name?name=${name}`
+        `/pokemons/name?name=${name}`
       );
      
       dispatch(
@@ -97,7 +97,7 @@ export const setTypes = (types) => ({
 export const fetchTypes = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(`http://localhost:3002/pokemons/type`,config);
+      const response = await axios.get(`/pokemons/type`,config);
       
       // Verificar si response.data es un array antes de usar map
       if (Array.isArray(response.data)) {
@@ -154,7 +154,7 @@ export const createPokemon = (pokemonData) => async (dispatch) => {
   dispatch({ type: CREATE_POKEMON, payload: pokemonData });
 
   try {
-    await axios.post("http://localhost:3002/pokemons", pokemonData);
+    await axios.post("/pokemons", pokemonData);
   } catch (error) {
     console.error("Error creating Pokemon", error);
   }

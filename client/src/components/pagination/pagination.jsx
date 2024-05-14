@@ -13,7 +13,6 @@ const Pagination = ({ page, total, current }) => {
 
       <button
         onClick={() => page(current - 1)}
-        disabled={current === 1}
         className={styles.button}
       >
         Previous
@@ -45,7 +44,6 @@ const Pagination = ({ page, total, current }) => {
 
       <button
         onClick={() => page(current + 1)}
-        disabled={current === total}
         className={styles.button}
       >
         Next

@@ -21,6 +21,7 @@ module.exports = (sequelize) => {
       speed: { type: DataTypes.INTEGER },
       height: { type: DataTypes.INTEGER },
       weight: { type: DataTypes.INTEGER },
+      color: { type: DataTypes.STRING },
     },
     { timestamps: false }
   );

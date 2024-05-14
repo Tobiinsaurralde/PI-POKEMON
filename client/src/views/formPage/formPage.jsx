@@ -257,6 +257,7 @@ const FormPage = () => {
             <p>Speed: {pokemon.speed}</p>
             <p>Height: {pokemon.height}</p>
             <p>Weight: {pokemon.weight}</p>
+
             <br />
             <div>
               {pokemon.types.map((type, index) => (
