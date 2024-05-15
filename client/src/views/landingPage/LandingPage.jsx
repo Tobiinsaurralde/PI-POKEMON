@@ -18,7 +18,7 @@ const LandingPage = () => {
   const handleHome = () => {
     navigate("/home");
   };
-
+ 
   return (
     <div className={styles.container}>
       <img className={styles.image} src="/src/assets/images/logo.png" alt="" />
