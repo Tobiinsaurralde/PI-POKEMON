@@ -10,7 +10,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     // Actualizamos la ruta para que sea relativa al directorio publico
-    document.body.style.backgroundImage = `url('/src/assets/images/fondoFon.jpg')`;
+    document.body.style.backgroundImage = `url('/src/assets/fondoFon.jpg')`;
     return () => {
       document.body.style.backgroundImage = null;
     };
@@ -23,7 +23,7 @@ const LandingPage = () => {
   return (
     <div className={styles.container}>
       {/* Actualizamos la ruta para que sea relativa al directorio publico */}
-      <img className={styles.image} src="/src/assets/images/logo.png" alt="" />
+      <img className={styles.image} src="/src/assets/logo.png" alt="" />
       <button className={styles.btn} onClick={handleHome}>
         <span className={styles.noselect}> Let's go! </span>
       </button>
