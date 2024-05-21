@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-ro
 import { Provider } from "react-redux";
 
 import axios from "axios";
-axios.defaults.baseURL = 'http://localhost:3002/';
+axios.defaults.baseURL = 'pi-pokemon-production-9cce.up.railway.app/';
 
 import "./App.css";
 
